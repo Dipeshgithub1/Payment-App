@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useSearchParams,useNavigate } from "react-router-dom"
 import axios from "axios";
+import { BASE_URL } from "../config";
 
 
 
@@ -44,7 +45,7 @@ export const SendMoney = () => {
            alert("Invalid input");
            return;
         }
-        axios.post("http://localhost:3000/api/v1/account/transfer",{
+        axios.post(`${BASE_URL}/api/v1/account/transfer`,{
             to:id,
             amount
         },{

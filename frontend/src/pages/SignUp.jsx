@@ -6,6 +6,7 @@ import {InputBox} from "../components/InputBox"
 import { SubHeading } from "../components/SubHeading"
 import axios from "axios"
 import { useNavigate } from "react-router-dom"
+import { BASE_URL } from "../config"
 
 
 export const SignUp =() => {
@@ -45,7 +46,7 @@ export const SignUp =() => {
          label = "Sign up"
          onClick={async() => {
             try{
-            const response = await axios.post("http://localhost:3000/api/v1/user/signup",{
+            const response = await axios.post(`${BASE_URL}/api/v1/user/signup`,{
              username,
              password,
              firstname,

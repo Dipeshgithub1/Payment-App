@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Appbar } from "../components/Appbar";
 import TransactionItem from "../components/TransactionItem";
 import axios from "axios";
+import { BASE_URL } from "../config";
 
 export const Transactions = () => {
   // 1️⃣ States
@@ -24,7 +25,7 @@ export const Transactions = () => {
       setError("");
 
       const res = await axios.get(
-        `http://localhost:3000/api/v1/account/history?page=${pageNumber}&limit=5`,
+        `${BASE_URL}/api/v1/account/history?page=${pageNumber}&limit=5`,
         {
           headers: {
             Authorization: `Bearer ${token}`,

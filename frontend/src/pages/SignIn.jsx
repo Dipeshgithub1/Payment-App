@@ -6,6 +6,7 @@ import Heading from "../components/Heading"
 import {InputBox} from "../components/InputBox"
 import { SubHeading } from "../components/SubHeading"
 import axios from "axios"
+import { BASE_URL } from "../config"
 
 export const SignIn = () => {
 
@@ -16,7 +17,7 @@ export const SignIn = () => {
 
       const handleSignin = async () => {
        try {
-        const res = await axios.post("http://localhost:3000/api/v1/user/signin",
+        const res = await axios.post(`${BASE_URL}/api/v1/user/signin`,
             {
                 username,
                 password,

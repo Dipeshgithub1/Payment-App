@@ -3,6 +3,7 @@ import { Appbar } from "../components/Appbar";
 import { Balance } from "../components/Balance";
 import { Users } from "../components/Users";
 import axios from "axios";
+import { BASE_URL } from "../config";
 import { useNavigate } from "react-router-dom";
 
 
@@ -13,7 +14,7 @@ export const Dashboard = () => {
    useEffect(() => {
     const fetchBalance = async () => {
         try {
-         const res =  await axios.get("http://localhost:3000/api/v1/account/balance",{
+         const res =  await axios.get(`${BASE_URL}/api/v1/account/balance`,{
 
             headers: {
                Authorization: `Bearer ${localStorage.getItem("token")}`,
