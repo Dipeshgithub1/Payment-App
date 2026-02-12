@@ -2,12 +2,20 @@ const express = require("express")
 const cors = require("cors")
 const userRouter = require("./routes/user.routes")
 const accountRouter = require("./routes/account")
+const transferRouter = require("./routes/transfer")
 
   
 const app = express();
 
-app.use(cors())
 app.use(express.json())
+
+
+
+app.use(cors({
+  origin: process.env.FRONTEND_URL,
+  credentials: true
+}));
+
 
 
 
@@ -18,7 +26,7 @@ app.use("/api/v1/user",userRouter)
 app.use("/api/v1/account",accountRouter)
 
 //transaction history 
-app.use("/api/v1/transaction",accountRouter)
+app.use("/api/v1/transaction",transferRouter)
 
 app.get("/health", (req, res) => {
   res.status(200).json({ status: "OK" });

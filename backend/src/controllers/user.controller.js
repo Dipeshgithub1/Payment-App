@@ -1,6 +1,6 @@
 
 const zod = require("zod")
-const {User} = require("../models/db")
+const {User} = require("../models/userdb")
 
 
 //allow to user upadte therir infomation

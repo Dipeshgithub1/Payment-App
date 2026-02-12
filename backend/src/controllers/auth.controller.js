@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const zod = require("zod")
 
-const {User} = require("../models/db")
+const {User} = require("../models/userdb")
 const {Account} = require("../models/accountdb")
 const {JWT_SECRET} = require("../config")
 
