@@ -7,3 +7,5 @@ const {authmiddleware} = require("../middleware/middlewares")
 
 
 router.get("/history",authmiddleware,transactionController.getMyTransaction)
+
+module.exports = router
