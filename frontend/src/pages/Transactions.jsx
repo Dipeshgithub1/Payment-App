@@ -25,7 +25,7 @@ export const Transactions = () => {
       setError("");
 
       const res = await axios.get(
-        `${BASE_URL}/api/v1/account/history?page=${pageNumber}&limit=5`,
+        `${BASE_URL}/api/v1/transfer/history?page=${pageNumber}&limit=5`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
