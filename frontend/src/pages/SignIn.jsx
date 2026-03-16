@@ -7,6 +7,7 @@ import {InputBox} from "../components/InputBox"
 import { SubHeading } from "../components/SubHeading"
 import axios from "axios"
 import { BASE_URL } from "../config"
+import GoogleLoginButton from "../components/GoogleLoginButton"
 
 export const SignIn = () => {
 
@@ -46,6 +47,11 @@ export const SignIn = () => {
           <Button label={"Sign In"} onClick={handleSignin}></Button>
 
           </div>
+          
+          <div className="pt-4">
+            <GoogleLoginButton />
+          </div>
+
           <ButtomWarning label={"Don't have an account?"} buttonText={"Sign Up"} to={"/signup"}></ButtomWarning>
 
             </div>
