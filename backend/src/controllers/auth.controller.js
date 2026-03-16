@@ -79,6 +79,12 @@ exports.signin = async (req,res) => {
       return res.status(411).json({message: "Invalid credentials"})
 
     }
+    
+    // Google users cannot sign in with password
+    if(!user.password || user.authProvider === "google"){
+        return res.status(411).json({message: "Please use Google login"})
+    }
+
     const isMatch = await bcrypt.compare(
         data.password,
         user.password
@@ -86,6 +92,11 @@ exports.signin = async (req,res) => {
 
     if(!isMatch){
      return res.status(411).json({message: "Error while logging in"})
+    }
+
+    // Prevent password login for Google auth users
+    if(user.authProvider === "google"){
+        return res.status(411).json({message: "Please use Google login"})
     }
 
     const token = jwt.sign({userId:user._id},JWT_SECRET);
