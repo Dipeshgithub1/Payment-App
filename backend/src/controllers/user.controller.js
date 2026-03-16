@@ -2,6 +2,24 @@
 const zod = require("zod")
 const {User} = require("../models/userdb")
 
+// Get current logged in user
+exports.getMe = async (req, res) => {
+  try {
+    const user = await User.findOne({ _id: req.userId });
+    if (!user) {
+      return res.status(404).json({ message: "User not found" });
+    }
+    res.json({
+      userId: user._id,
+      username: user.username,
+      firstname: user.firstname,
+      lastname: user.lastname
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 
 //allow to user upadte therir infomation
 const updateSchema = zod.object({

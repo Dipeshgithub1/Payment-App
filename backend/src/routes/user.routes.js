@@ -16,6 +16,7 @@ router.post("/google",googleAuth.googleAuth)
 
 //user
 router.put("/",authmiddleware,userController.updateUser)
+router.get("/me",authmiddleware,userController.getMe)
 router.get("/bulk",authmiddleware,userController.getBulkUsers)
 
 
