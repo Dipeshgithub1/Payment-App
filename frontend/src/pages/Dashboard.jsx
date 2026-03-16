@@ -9,27 +9,35 @@ import { useNavigate } from "react-router-dom";
 
 export const Dashboard = () => {
   const [balance,setBalance] = useState(0);
+  const [user, setUser] = useState(null);
   const navigate = useNavigate()
 
    useEffect(() => {
-    const fetchBalance = async () => {
+    const fetchData = async () => {
         try {
-         const res =  await axios.get(`${BASE_URL}/api/v1/account/balance`,{
-
+         // Fetch balance
+         const balanceRes = await axios.get(`${BASE_URL}/api/v1/account/balance`,{
             headers: {
                Authorization: `Bearer ${localStorage.getItem("token")}`,
             }
             })
+            setBalance(balanceRes.data.balance)
             
-            setBalance(res.data.balance)
+            // Fetch current user
+            const userRes = await axios.get(`${BASE_URL}/api/v1/user/me`,{
+            headers: {
+               Authorization: `Bearer ${localStorage.getItem("token")}`,
+            }
+            })
+            setUser(userRes.data)
             
         } 
         
         catch (error) {
-            console.error("Failed to fetch balance", error);
+            console.error("Failed to fetch data", error);
 
             //option handle autherisze
-            if(err.response?.status === 401 ){
+            if(error.response?.status === 401 ){
                 localStorage.removeItem("token");
                 navigate("/signin")
 
@@ -37,12 +45,12 @@ export const Dashboard = () => {
             
         }
     }
-    fetchBalance();
+    fetchData();
 
    },[navigate])
 
     return <div>
-        <Appbar/>
+        <Appbar user={user}/>
         <div className="m-8">
         <Balance value ={balance}></Balance>
         <button onClick={() => {
