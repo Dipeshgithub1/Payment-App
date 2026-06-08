@@ -16,14 +16,3 @@
 
 ---
 
-## 🧱 Architecture Overview
-
-```text
-Client
-  │
-  └──▶ REST API (Express.js)
-            │
-            ├── Auth & Middleware
-            ├── Business Logic
-            ├── MongoDB Transactions
-            └── Data Models (Mongoose)
