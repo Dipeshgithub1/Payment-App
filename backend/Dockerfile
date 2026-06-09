@@ -16,7 +16,14 @@ COPY --from=builder /app/package*.json ./
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/src ./src
 COPY --from=builder /app/package.json ./
+COPY --from=builder /app/.env ./.env
 
+ARG MONGODB_URL
+ARG JWT_SECRET
+ARG FRONTEND_URL
+ENV MONGODB_URL=$MONGODB_URL
+ENV JWT_SECRET=$JWT_SECRET
+ENV FRONTEND_URL=$FRONTEND_URL
 ENV NODE_ENV=production
 
 RUN addgroup -g 1001 -S nodejs && \
